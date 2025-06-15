@@ -544,71 +544,183 @@ function renderizarBandejasDesayuno() {
     const container = document.getElementById('bandejas-desayuno-menu');
     container.innerHTML = '';
     
-    // Bandeja sola
-    const divSolo = document.createElement('div');
-    divSolo.className = 'menu-item';
-    divSolo.id = 'bandeja-desayuno-solo';
-    divSolo.innerHTML = `
+    // Bandeja de Huevos sola
+    const divHuevoSolo = document.createElement('div');
+    divHuevoSolo.className = 'menu-item';
+    divHuevoSolo.innerHTML = `
         <div class="menu-item-header">
-            <h4>Bandeja de Desayuno</h4>
+            <h4>Bandeja de Huevos</h4>
             <div class="price">${menuData.precios.bandejaDesayunoSolo.toLocaleString()}</div>
         </div>
         <div class="combo-options">
             <select id="huevo-select-solo" class="combo-select" onclick="event.stopPropagation()">
-                <option value="">Seleccionar huevo</option>
+                <option value="">Seleccionar tipo de huevo</option>
                 ${menuData.huevos.map(h => `<option value="${h}">${h}</option>`).join('')}
-            </select>
-            <select id="carne-select-solo" class="combo-select" onclick="event.stopPropagation()">
-                <option value="">Seleccionar carne</option>
-                ${menuData.carnesDesayuno.map(c => `<option value="${c}">${c}</option>`).join('')}
             </select>
         </div>
         <div class="cantidad-controls">
-            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-desayuno-solo', -1)">-</button>
-            <span class="cantidad-display" id="cantidad-bandeja-desayuno-solo">1</span>
-            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-desayuno-solo', 1)">+</button>
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-huevo-solo', -1)">-</button>
+            <span class="cantidad-display" id="cantidad-bandeja-huevo-solo">1</span>
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-huevo-solo', 1)">+</button>
         </div>
     `;
-    divSolo.onclick = () => seleccionarBandejaDesayuno('solo');
-    container.appendChild(divSolo);
+    divHuevoSolo.onclick = () => seleccionarBandejaHuevo('solo');
+    container.appendChild(divHuevoSolo);
 
-    // Bandeja con bebida
-    const divBebida = document.createElement('div');
-    divBebida.className = 'menu-item';
-    divBebida.innerHTML = `
+    // Bandeja de Huevos con bebida
+    const divHuevoBebida = document.createElement('div');
+    divHuevoBebida.className = 'menu-item';
+    divHuevoBebida.innerHTML = `
         <div class="menu-item-header">
-            <h4>Bandeja de Desayuno + Bebida</h4>
+            <h4>Bandeja de Huevos + Bebida</h4>
             <div class="price">${menuData.precios.bandejaDesayunoBebida.toLocaleString()}</div>
         </div>
         <div class="combo-options">
             <select id="huevo-select-bebida" class="combo-select" onclick="event.stopPropagation()">
-                <option value="">Seleccionar huevo</option>
+                <option value="">Seleccionar tipo de huevo</option>
                 ${menuData.huevos.map(h => `<option value="${h}">${h}</option>`).join('')}
             </select>
+        </div>
+        <div class="bebidas-section">
+            <h5>Seleccionar bebida:</h5>
+            <div class="bebida-options" id="bebida-bandeja-huevo">
+                ${menuData.bebidas.map((bebida, index) => `
+                    <div class="bebida-option" onclick="event.stopPropagation(); seleccionarBebida('bandeja-huevo', ${index})">${bebida}</div>
+                `).join('')}
+            </div>
+        </div>
+        <div class="cantidad-controls">
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-huevo-bebida', -1)">-</button>
+            <span class="cantidad-display" id="cantidad-bandeja-huevo-bebida">1</span>
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-huevo-bebida', 1)">+</button>
+        </div>
+    `;
+    divHuevoBebida.onclick = () => seleccionarBandejaHuevo('bebida');
+    container.appendChild(divHuevoBebida);
+
+    // Bandeja de Carne sola
+    const divCarneSolo = document.createElement('div');
+    divCarneSolo.className = 'menu-item';
+    divCarneSolo.innerHTML = `
+        <div class="menu-item-header">
+            <h4>Bandeja de Carne</h4>
+            <div class="price">${menuData.precios.bandejaDesayunoSolo.toLocaleString()}</div>
+        </div>
+        <div class="combo-options">
+            <select id="carne-select-solo" class="combo-select" onclick="event.stopPropagation()">
+                <option value="">Seleccionar tipo de carne</option>
+                ${menuData.carnesDesayuno.map(c => `<option value="${c}">${c}</option>`).join('')}
+            </select>
+        </div>
+        <div class="cantidad-controls">
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-carne-solo', -1)">-</button>
+            <span class="cantidad-display" id="cantidad-bandeja-carne-solo">1</span>
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-carne-solo', 1)">+</button>
+        </div>
+    `;
+    divCarneSolo.onclick = () => seleccionarBandejaCarne('solo');
+    container.appendChild(divCarneSolo);
+
+    // Bandeja de Carne con bebida
+    const divCarneBebida = document.createElement('div');
+    divCarneBebida.className = 'menu-item';
+    divCarneBebida.innerHTML = `
+        <div class="menu-item-header">
+            <h4>Bandeja de Carne + Bebida</h4>
+            <div class="price">${menuData.precios.bandejaDesayunoBebida.toLocaleString()}</div>
+        </div>
+        <div class="combo-options">
             <select id="carne-select-bebida" class="combo-select" onclick="event.stopPropagation()">
-                <option value="">Seleccionar carne</option>
+                <option value="">Seleccionar tipo de carne</option>
                 ${menuData.carnesDesayuno.map(c => `<option value="${c}">${c}</option>`).join('')}
             </select>
         </div>
         <div class="bebidas-section">
             <h5>Seleccionar bebida:</h5>
-            <div class="bebida-options" id="bebida-bandeja-desayuno">
+            <div class="bebida-options" id="bebida-bandeja-carne">
                 ${menuData.bebidas.map((bebida, index) => `
-                    <div class="bebida-option" onclick="event.stopPropagation(); seleccionarBebida('bandeja-desayuno', ${index})">${bebida}</div>
+                    <div class="bebida-option" onclick="event.stopPropagation(); seleccionarBebida('bandeja-carne', ${index})">${bebida}</div>
                 `).join('')}
             </div>
         </div>
         <div class="cantidad-controls">
-            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-desayuno-bebida', -1)">-</button>
-            <span class="cantidad-display" id="cantidad-bandeja-desayuno-bebida">1</span>
-            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-desayuno-bebida', 1)">+</button>
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-carne-bebida', -1)">-</button>
+            <span class="cantidad-display" id="cantidad-bandeja-carne-bebida">1</span>
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-carne-bebida', 1)">+</button>
         </div>
     `;
-    divBebida.onclick = () => seleccionarBandejaDesayuno('bebida');
-    container.appendChild(divBebida);
+    divCarneBebida.onclick = () => seleccionarBandejaCarne('bebida');
+    container.appendChild(divCarneBebida);
 
-    cantidades['bandeja-desayuno-solo'] = 1;
-    cantidades['bandeja-desayuno-bebida'] = 1;
+    // Bandeja Completa (Huevos + Carne) sola
+    const divCompletaSolo = document.createElement('div');
+    divCompletaSolo.className = 'menu-item';
+    divCompletaSolo.innerHTML = `
+        <div class="menu-item-header">
+            <h4>Bandeja Completa (Huevos + Carne)</h4>
+            <div class="price">${(menuData.precios.bandejaDesayunoSolo * 1.5).toLocaleString()}</div>
+        </div>
+        <div class="combo-options">
+            <select id="huevo-completa-solo" class="combo-select" onclick="event.stopPropagation()">
+                <option value="">Seleccionar tipo de huevo</option>
+                ${menuData.huevos.map(h => `<option value="${h}">${h}</option>`).join('')}
+            </select>
+            <select id="carne-completa-solo" class="combo-select" onclick="event.stopPropagation()">
+                <option value="">Seleccionar tipo de carne</option>
+                ${menuData.carnesDesayuno.map(c => `<option value="${c}">${c}</option>`).join('')}
+            </select>
+        </div>
+        <div class="cantidad-controls">
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-completa-solo', -1)">-</button>
+            <span class="cantidad-display" id="cantidad-bandeja-completa-solo">1</span>
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-completa-solo', 1)">+</button>
+        </div>
+    `;
+    divCompletaSolo.onclick = () => seleccionarBandejaCompleta('solo');
+    container.appendChild(divCompletaSolo);
+
+    // Bandeja Completa con bebida
+    const divCompletaBebida = document.createElement('div');
+    divCompletaBebida.className = 'menu-item';
+    divCompletaBebida.innerHTML = `
+        <div class="menu-item-header">
+            <h4>Bandeja Completa + Bebida</h4>
+            <div class="price">${(menuData.precios.bandejaDesayunoBebida * 1.5).toLocaleString()}</div>
+        </div>
+        <div class="combo-options">
+            <select id="huevo-completa-bebida" class="combo-select" onclick="event.stopPropagation()">
+                <option value="">Seleccionar tipo de huevo</option>
+                ${menuData.huevos.map(h => `<option value="${h}">${h}</option>`).join('')}
+            </select>
+            <select id="carne-completa-bebida" class="combo-select" onclick="event.stopPropagation()">
+                <option value="">Seleccionar tipo de carne</option>
+                ${menuData.carnesDesayuno.map(c => `<option value="${c}">${c}</option>`).join('')}
+            </select>
+        </div>
+        <div class="bebidas-section">
+            <h5>Seleccionar bebida:</h5>
+            <div class="bebida-options" id="bebida-bandeja-completa">
+                ${menuData.bebidas.map((bebida, index) => `
+                    <div class="bebida-option" onclick="event.stopPropagation(); seleccionarBebida('bandeja-completa', ${index})">${bebida}</div>
+                `).join('')}
+            </div>
+        </div>
+        <div class="cantidad-controls">
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-completa-bebida', -1)">-</button>
+            <span class="cantidad-display" id="cantidad-bandeja-completa-bebida">1</span>
+            <button class="cantidad-btn" onclick="event.stopPropagation(); cambiarCantidad('bandeja-completa-bebida', 1)">+</button>
+        </div>
+    `;
+    divCompletaBebida.onclick = () => seleccionarBandejaCompleta('bebida');
+    container.appendChild(divCompletaBebida);
+
+    // Inicializar cantidades
+    cantidades['bandeja-huevo-solo'] = 1;
+    cantidades['bandeja-huevo-bebida'] = 1;
+    cantidades['bandeja-carne-solo'] = 1;
+    cantidades['bandeja-carne-bebida'] = 1;
+    cantidades['bandeja-completa-solo'] = 1;
+    cantidades['bandeja-completa-bebida'] = 1;
 }
 
 function renderizarBandejasAlmuerzo() {
@@ -769,17 +881,16 @@ function renderizarCombosAlmuerzo() {
 }
 
 // Funciones de selección
-function seleccionarBandejaDesayuno(tipo) {
+function seleccionarBandejaHuevo(tipo) {
     const huevo = document.getElementById(`huevo-select-${tipo}`).value;
-    const carne = document.getElementById(`carne-select-${tipo}`).value;
     
-    if (!huevo || !carne) {
-        alert('Por favor selecciona el tipo de huevo y carne');
+    if (!huevo) {
+        alert('Por favor selecciona el tipo de huevo');
         return;
     }
     
     if (tipo === 'bebida') {
-        const container = document.getElementById('bebida-bandeja-desayuno');
+        const container = document.getElementById('bebida-bandeja-huevo');
         const selectedIndex = container.dataset.selectedBebida;
         
         if (selectedIndex === undefined) {
@@ -788,11 +899,111 @@ function seleccionarBandejaDesayuno(tipo) {
         }
         
         const bebida = menuData.bebidas[selectedIndex];
-        const cantidad = cantidades['bandeja-desayuno-bebida'] || 1;
+        const cantidad = cantidades['bandeja-huevo-bebida'] || 1;
         
         agregarItem(
-            'Bandeja de Desayuno + Bebida',
+            'Bandeja de Huevos + Bebida',
             menuData.precios.bandejaDesayunoBebida,
+            'Bandeja',
+            `${huevo} | Bebida: ${bebida}`,
+            cantidad
+        );
+        
+        // Resetear
+        container.dataset.selectedBebida = undefined;
+        container.querySelectorAll('.bebida-option').forEach(opt => opt.classList.remove('selected'));
+    } else {
+        const cantidad = cantidades['bandeja-huevo-solo'] || 1;
+        agregarItem(
+            'Bandeja de Huevos',
+            menuData.precios.bandejaDesayunoSolo,
+            'Bandeja',
+            huevo,
+            cantidad
+        );
+    }
+    
+    // Resetear selecciones y cantidad
+    document.getElementById(`huevo-select-${tipo}`).value = '';
+    cantidades[`bandeja-huevo-${tipo}`] = 1;
+    document.getElementById(`cantidad-bandeja-huevo-${tipo}`).textContent = '1';
+}
+
+function seleccionarBandejaCarne(tipo) {
+    const carne = document.getElementById(`carne-select-${tipo}`).value;
+    
+    if (!carne) {
+        alert('Por favor selecciona el tipo de carne');
+        return;
+    }
+    
+    if (tipo === 'bebida') {
+        const container = document.getElementById('bebida-bandeja-carne');
+        const selectedIndex = container.dataset.selectedBebida;
+        
+        if (selectedIndex === undefined) {
+            alert('Por favor selecciona una bebida');
+            return;
+        }
+        
+        const bebida = menuData.bebidas[selectedIndex];
+        const cantidad = cantidades['bandeja-carne-bebida'] || 1;
+        
+        agregarItem(
+            'Bandeja de Carne + Bebida',
+            menuData.precios.bandejaDesayunoBebida,
+            'Bandeja',
+            `${carne} | Bebida: ${bebida}`,
+            cantidad
+        );
+        
+        // Resetear
+        container.dataset.selectedBebida = undefined;
+        container.querySelectorAll('.bebida-option').forEach(opt => opt.classList.remove('selected'));
+    } else {
+        const cantidad = cantidades['bandeja-carne-solo'] || 1;
+        agregarItem(
+            'Bandeja de Carne',
+            menuData.precios.bandejaDesayunoSolo,
+            'Bandeja',
+            carne,
+            cantidad
+        );
+    }
+    
+    // Resetear selecciones y cantidad
+    document.getElementById(`carne-select-${tipo}`).value = '';
+    cantidades[`bandeja-carne-${tipo}`] = 1;
+    document.getElementById(`cantidad-bandeja-carne-${tipo}`).textContent = '1';
+}
+
+function seleccionarBandejaCompleta(tipo) {
+    const huevo = document.getElementById(`huevo-completa-${tipo}`).value;
+    const carne = document.getElementById(`carne-completa-${tipo}`).value;
+    
+    if (!huevo || !carne) {
+        alert('Por favor selecciona el tipo de huevo y carne');
+        return;
+    }
+    
+    const precioCompleta = Math.round(menuData.precios.bandejaDesayunoSolo * 1.5);
+    const precioCompletaBebida = Math.round(menuData.precios.bandejaDesayunoBebida * 1.5);
+    
+    if (tipo === 'bebida') {
+        const container = document.getElementById('bebida-bandeja-completa');
+        const selectedIndex = container.dataset.selectedBebida;
+        
+        if (selectedIndex === undefined) {
+            alert('Por favor selecciona una bebida');
+            return;
+        }
+        
+        const bebida = menuData.bebidas[selectedIndex];
+        const cantidad = cantidades['bandeja-completa-bebida'] || 1;
+        
+        agregarItem(
+            'Bandeja Completa + Bebida',
+            precioCompletaBebida,
             'Bandeja',
             `${huevo} + ${carne} | Bebida: ${bebida}`,
             cantidad
@@ -802,10 +1013,10 @@ function seleccionarBandejaDesayuno(tipo) {
         container.dataset.selectedBebida = undefined;
         container.querySelectorAll('.bebida-option').forEach(opt => opt.classList.remove('selected'));
     } else {
-        const cantidad = cantidades['bandeja-desayuno-solo'] || 1;
+        const cantidad = cantidades['bandeja-completa-solo'] || 1;
         agregarItem(
-            'Bandeja de Desayuno',
-            menuData.precios.bandejaDesayunoSolo,
+            'Bandeja Completa (Huevos + Carne)',
+            precioCompleta,
             'Bandeja',
             `${huevo} + ${carne}`,
             cantidad
@@ -813,10 +1024,15 @@ function seleccionarBandejaDesayuno(tipo) {
     }
     
     // Resetear selecciones y cantidad
-    document.getElementById(`huevo-select-${tipo}`).value = '';
-    document.getElementById(`carne-select-${tipo}`).value = '';
-    cantidades[`bandeja-desayuno-${tipo}`] = 1;
-    document.getElementById(`cantidad-bandeja-desayuno-${tipo}`).textContent = '1';
+    document.getElementById(`huevo-completa-${tipo}`).value = '';
+    document.getElementById(`carne-completa-${tipo}`).value = '';
+    cantidades[`bandeja-completa-${tipo}`] = 1;
+    document.getElementById(`cantidad-bandeja-completa-${tipo}`).textContent = '1';
+}
+
+function seleccionarBandejaDesayuno(tipo) {
+    // Esta función se mantiene para compatibilidad, pero ya no se usa
+    // Las nuevas funciones son seleccionarBandejaHuevo, seleccionarBandejaCarne, seleccionarBandejaCompleta
 }
 
 function seleccionarBandejaAlmuerzo(tipo) {
@@ -874,14 +1090,14 @@ function seleccionarComboDesayuno(caldo, index) {
     const carne = document.getElementById(`carne-combo-${index}`).value;
     
     if (!huevo || !carne) {
-        alert('Por favor selecciona el tipo de huevo y carne para la bandeja');
+        alert('Por favor selecciona el tipo de huevo y carne para la bandeja completa');
         return;
     }
     
     const cantidad = cantidades['combo-desayuno-' + index] || 1;
     
     agregarItem(
-        `COMBO: ${caldo} + Bandeja`,
+        `COMBO: ${caldo} + Bandeja Completa`,
         menuData.precios.comboDesayuno,
         'Combo',
         `Caldo: ${caldo} | Bandeja: ${huevo} + ${carne}`,
