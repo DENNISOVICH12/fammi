@@ -8,327 +8,273 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
+    padding: 20px;
     color: #333;
 }
 
-.container {
-    max-width: 900px;
+.main-container {
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 15px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
+/* Header */
 .header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    padding: 20px 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #3498db;
 }
 
 .header h1 {
-    text-align: center;
-    color: #2c3e50;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-.info-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-    align-items: center;
-}
-
-.info-row input, .info-row select {
-    padding: 10px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 16px;
-    flex: 1;
-}
-
-.info-row label {
+    font-size: 2.5rem;
     font-weight: bold;
-    min-width: 60px;
-    color: #2c3e50;
+    letter-spacing: 2px;
 }
 
-.tabs {
+.cuenta-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.cuenta-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Tabs */
+.tabs-container {
+    background: #ecf0f1;
+    padding: 0;
     display: flex;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    padding: 5px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .tab {
     flex: 1;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
-    border-radius: 10px;
+    background: #bdc3c7;
+    color: #2c3e50;
+    font-size: 1.3rem;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 600;
-    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .tab.active {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: #3498db;
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
 }
 
-.tab-content {
-    display: none;
+.tab:hover:not(.active) {
+    background: #95a5a6;
+    color: white;
 }
 
-.tab-content.active {
-    display: block;
+/* Content Area */
+.content-area {
+    display: flex;
+    min-height: 70vh;
 }
 
 .menu-section {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.section-header h3 {
-    color: #2c3e50;
-    font-size: 1.4rem;
-    border-bottom: 2px solid #667eea;
-    padding-bottom: 5px;
-}
-
-.edit-btn {
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 15px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.edit-btn:hover {
-    background: #2980b9;
-    transform: translateY(-1px);
-}
-
-.menu-config {
-    display: none;
+    flex: 2;
+    padding: 30px;
     background: #f8f9fa;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 2px dashed #3498db;
 }
 
-.menu-config.active {
-    display: block;
-}
-
-.config-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.config-row input {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 14px;
+.order-section {
     flex: 1;
-    min-width: 150px;
+    padding: 30px;
+    background: #ecf0f1;
+    border-left: 3px solid #3498db;
 }
 
-.config-row button {
-    background: #27ae60;
+/* Mesa Info */
+.mesa-info {
+    background: linear-gradient(135deg, #3498db, #2980b9);
     color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 12px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.config-row button:hover {
-    background: #229954;
-}
-
-.price-config {
-    background: #e8f4f8;
-    border-radius: 8px;
     padding: 15px;
-    margin: 10px 0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-.price-config h5 {
-    color: #2c3e50;
-    margin-bottom: 10px;
+.mesa-select {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
     font-size: 1.1rem;
+    margin: 10px;
+    background: white;
+    color: #2c3e50;
 }
 
-.price-row {
+/* Menu Items */
+.menu-category {
+    margin-bottom: 30px;
+}
+
+.category-title {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 8px;
+}
+
+.menu-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr auto;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.price-row label {
-    font-weight: 500;
-    color: #555;
-}
-
-.price-row input {
-    padding: 6px 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    text-align: right;
-}
-
-.delete-option {
-    background: #e74c3c !important;
-}
-
-.menu-items {
-    display: grid;
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .menu-item {
     background: white;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
     border: 2px solid transparent;
 }
 
 .menu-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    border-color: #667eea;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-color: #3498db;
 }
 
-.menu-item.combo {
-    background: linear-gradient(135deg, #fff 0%, #f0f4ff 100%);
-    border: 2px solid #667eea;
-}
-
-.menu-item-header {
+.item-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.menu-item h4 {
-    color: #2c3e50;
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-.price {
-    color: #e74c3c;
-    font-weight: bold;
+.item-name {
     font-size: 1.3rem;
-}
-
-.combo-badge {
-    background: #f39c12;
-    color: white;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
     font-weight: bold;
-    margin-left: 10px;
+    color: #2c3e50;
 }
 
-.menu-options {
-    margin: 10px 0;
+.item-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e74c3c;
 }
 
-.option-checkbox {
+.item-options {
+    margin: 15px 0;
+}
+
+.option-group {
+    margin-bottom: 15px;
+}
+
+.option-label {
+    font-weight: bold;
+    color: #34495e;
     margin-bottom: 8px;
+    display: block;
 }
 
-.option-checkbox input {
-    margin-right: 8px;
+.option-select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ecf0f1;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    transition: border-color 0.3s ease;
 }
 
-.option-checkbox label {
-    cursor: pointer;
-    user-select: none;
+.option-select:focus {
+    outline: none;
+    border-color: #3498db;
 }
 
-.combo-options {
+.radio-group {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 10px;
     margin-top: 10px;
 }
 
-.combo-select {
-    padding: 8px;
-    border: 2px solid #e0e0e0;
+.radio-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f8f9fa;
     border-radius: 8px;
-    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.combo-select:focus {
-    outline: none;
-    border-color: #667eea;
+.radio-option:hover {
+    background: #e9ecef;
 }
 
-.cantidad-controls {
+.radio-option.selected {
+    background: #3498db;
+    color: white;
+}
+
+.radio-option input {
+    margin-right: 8px;
+}
+
+.quantity-controls {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
-    margin-top: 15px;
+    margin: 15px 0;
     padding: 10px;
     background: #f8f9fa;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
-.cantidad-btn {
-    background: #667eea;
+.qty-btn {
+    background: #3498db;
     color: white;
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    cursor: pointer;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.cantidad-btn:hover {
-    background: #5a6fd8;
+.qty-btn:hover {
+    background: #2980b9;
     transform: scale(1.1);
 }
 
-.cantidad-display {
+.qty-display {
     font-size: 1.5rem;
     font-weight: bold;
     color: #2c3e50;
@@ -336,244 +282,344 @@ body {
     text-align: center;
 }
 
-.option-list {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.option-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-}
-
-.option-item button {
-    background: #e74c3c;
+.add-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.bebidas-section {
-    background: #f0f4ff;
-    border-radius: 8px;
     padding: 15px;
-    margin: 15px 0;
-}
-
-.bebidas-section h5 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-.bebida-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-}
-
-.bebida-option {
-    background: white;
-    padding: 8px;
-    border-radius: 6px;
-    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+}
+
+/* Combos */
+.combo-item {
+    background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
+    border: 2px solid #3498db;
+}
+
+.combo-description {
+    background: #e8f4f8;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #2c3e50;
     text-align: center;
 }
 
-.bebida-option:hover {
-    border-color: #667eea;
-    background: #f8f9ff;
-}
-
-.bebida-option.selected {
-    border-color: #667eea;
-    background: #e8efff;
-}
-
-.pedido-actual {
-    background: rgba(255, 255, 255, 0.95);
+/* Order Summary */
+.order-summary {
+    background: white;
     border-radius: 15px;
     padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.pedido-item {
+.order-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.order-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    border-bottom: 1px solid #e0e0e0;
     margin-bottom: 10px;
-    background: white;
-    border-radius: 8px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
 }
 
-.pedido-item:last-child {
-    margin-bottom: 0;
-}
-
-.pedido-info {
+.order-item-info {
     flex: 1;
 }
 
-.pedido-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.order-item-name {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
 }
 
-.delete-btn {
+.order-item-details {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.order-item-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-left: 15px;
+}
+
+.delete-item {
     background: #e74c3c;
     color: white;
     border: none;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    font-size: 16px;
+    margin-left: 10px;
     transition: all 0.3s ease;
 }
 
-.delete-btn:hover {
+.delete-item:hover {
     background: #c0392b;
     transform: scale(1.1);
 }
 
-.total {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #2c3e50;
+.order-total {
     text-align: center;
     padding: 20px;
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    border-radius: 12px;
     margin: 20px 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    color: white;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
-.btn {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
+.order-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 15px;
     border: none;
-    border-radius: 12px;
-    padding: 18px 25px;
-    font-size: 1.2rem;
-    font-weight: 600;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 100%;
-    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+.btn-confirm {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
 }
 
-.btn-secondary {
-    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
-}
-
-.btn-danger {
+.btn-clear {
     background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
 }
 
-.ventas-summary {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.venta-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background: white;
-}
-
-.venta-info {
-    flex: 1;
-}
-
-.venta-actions {
-    display: flex;
-    gap: 8px;
-}
-
-.btn-small {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    min-width: auto;
-    margin: 0;
-}
-
+/* Responsive mejorado */
 @media (max-width: 768px) {
-    .container {
+    body {
         padding: 10px;
     }
-
-    .info-row {
+    
+    .main-container {
+        border-radius: 10px;
+    }
+    
+    .content-area {
         flex-direction: column;
-        align-items: stretch;
     }
-
-    .info-row label {
-        min-width: auto;
-        margin-bottom: 5px;
+    
+    .menu-section, .order-section {
+        padding: 15px;
     }
-
-    .combo-options {
+    
+    .menu-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
-
-    .config-row {
-        flex-direction: column;
-        align-items: stretch;
+    
+    .header {
+        padding: 15px 20px;
     }
-
-    .bebida-options {
+    
+    .header h1 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .cuenta-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .tab {
+        font-size: 1rem;
+        padding: 15px 10px;
+    }
+    
+    .category-title {
+        font-size: 1.4rem;
+    }
+    
+    .item-name {
+        font-size: 1.1rem;
+    }
+    
+    .item-price {
+        font-size: 1.2rem;
+    }
+    
+    .radio-group {
         grid-template-columns: 1fr;
+        gap: 8px;
     }
-
-    .price-row {
-        grid-template-columns: 1fr;
-        gap: 5px;
+    
+    .radio-option {
+        padding: 12px;
+        font-size: 1rem;
     }
-
-    .pedido-item {
+    
+    .qty-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .qty-display {
+        font-size: 1.3rem;
+    }
+    
+    .add-btn {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    
+    .order-item {
         flex-direction: column;
         align-items: stretch;
         gap: 10px;
+        padding: 12px;
     }
-
-    .pedido-actions {
-        justify-content: space-between;
+    
+    .order-item-info {
+        text-align: center;
     }
+    
+    .order-item-price {
+        text-align: center;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+    
+    .delete-item {
+        align-self: center;
+        margin: 0;
+    }
+    
+    .order-total {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+    
+    .action-btn {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    
+    .mesa-select {
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .option-select {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    
+    .quantity-controls {
+        padding: 8px;
+        gap: 12px;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
 
-    .venta-item {
+/* Responsive para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .header {
+        padding: 10px 15px;
         flex-direction: column;
-        align-items: stretch;
         gap: 10px;
     }
-
-    .venta-actions {
-        justify-content: center;
+    
+    .header h1 {
+        font-size: 1.5rem;
     }
+    
+    .tab {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+    }
+    
+    .menu-section, .order-section {
+        padding: 10px;
+    }
+    
+    .category-title {
+        font-size: 1.2rem;
+    }
+    
+    .menu-item {
+        padding: 15px;
+    }
+    
+    .item-header {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .radio-option {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .order-title {
+        font-size: 1.2rem;
+    }
+    
+    .order-total {
+        font-size: 1.3rem;
+        padding: 12px;
+    }
+}
+
+/* Hidden content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
 }
